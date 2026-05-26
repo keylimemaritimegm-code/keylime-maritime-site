@@ -607,211 +607,69 @@ h2.section-title {
 .perk { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 300; }
 .perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
 
-/* ── Wizard form ── */
+/* Right: form box */
 .form-box {
   background: var(--white); border: 1px solid var(--border);
-  border-radius: 24px; padding: 40px 36px;
-  min-height: 460px; display: flex; flex-direction: column;
+  border-radius: 20px; padding: 40px 36px;
 }
-
-/* Progress bar */
-.wiz-progress {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 36px;
+.form-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--text-body); margin-bottom: 4px; }
+.form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; font-weight: 300; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip {
+  background: var(--white-off); border: 1.5px solid var(--border);
+  color: var(--text-muted); padding: 7px 15px; border-radius: 100px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: all 0.18s; font-family: var(--font-body); border: none;
+  border: 1.5px solid var(--border);
 }
-.wiz-bar {
-  flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden;
+.chip:hover { border-color: var(--lime-dark); color: var(--lime-dark); }
+.chip.on { background: var(--lime-pale); border-color: var(--lime); color: var(--lime-dark); font-weight: 600; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg.full { grid-column: 1 / -1; }
+.fg label {
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-muted); font-family: var(--font-body);
 }
-.wiz-bar-fill {
-  height: 100%; background: var(--lime); border-radius: 2px;
-  transition: width 0.4s var(--ease-out-quart);
-  width: 0%;
-}
-.wiz-step-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-muted);
-  white-space: nowrap; font-family: var(--font-body);
-}
-
-/* Step wrapper */
-.wiz-steps { flex: 1; position: relative; }
-.wiz-step {
-  display: none; flex-direction: column;
-  animation: stepIn 0.35s var(--ease-out-quart) both;
-}
-.wiz-step.active { display: flex; }
-.wiz-step.exit {
-  display: flex;
-  animation: stepOut 0.25s var(--ease-out-quart) both;
-  pointer-events: none;
-}
-@keyframes stepIn  { from { opacity:0; transform:translateX(28px); } to { opacity:1; transform:none; } }
-@keyframes stepOut { from { opacity:1; transform:none; } to { opacity:0; transform:translateX(-28px); } }
-
-.wiz-q {
-  font-family: var(--font-display); font-size: clamp(20px, 3vw, 26px);
-  font-weight: 800; color: var(--text-body); line-height: 1.2;
-  margin-bottom: 8px;
-}
-.wiz-hint {
-  font-size: 13px; color: var(--text-muted); font-weight: 300;
-  margin-bottom: 28px; line-height: 1.6;
-}
-
-/* Big option cards */
-.wiz-options {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-bottom: 24px;
-}
-.wiz-options.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.wiz-opt {
-  background: var(--white-off); border: 2px solid var(--border);
-  border-radius: 12px; padding: 16px 14px;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  cursor: pointer; font-family: var(--font-body);
-  transition: all 0.18s var(--ease-out-quart);
-  text-align: center;
-}
-.wiz-opt:hover { border-color: var(--lime); background: var(--lime-pale); }
-.wiz-opt.on { border-color: var(--lime); background: var(--lime-pale); }
-.wiz-opt-icon { font-size: 28px; line-height: 1; }
-.wiz-opt-label {
-  font-size: 12px; font-weight: 600; color: var(--text-body);
-  letter-spacing: 0.2px; line-height: 1.3;
-}
-.wiz-opt.on .wiz-opt-label { color: var(--lime-dark); }
-
-/* Text input step */
-.wiz-input-wrap { position: relative; margin-bottom: 8px; }
-.wiz-input {
-  width: 100%;
-  background: var(--white-off); border: 2px solid var(--border);
-  border-radius: 12px; padding: 18px 20px;
-  font-size: 18px; color: var(--text-body);
+.fg input, .fg select, .fg textarea {
+  background: var(--white-off); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 12px 14px;
+  font-size: 14px; color: var(--text-body);
   font-family: var(--font-body); font-weight: 400;
   outline: none; -webkit-appearance: none;
   transition: border-color 0.18s, background 0.18s;
 }
-.wiz-input:focus { border-color: var(--lime); background: var(--lime-pale); }
-.wiz-input.error { border-color: oklch(55% 0.2 25); }
-.wiz-input-err {
-  font-size: 12px; color: oklch(50% 0.18 25);
-  margin-top: 6px; display: none;
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--lime); background: var(--lime-pale);
 }
-.wiz-input-err.show { display: block; }
-.wiz-input::placeholder { color: var(--border); }
-
-/* Row of two inputs */
-.wiz-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-/* Select */
-.wiz-select {
-  width: 100%;
-  background: var(--white-off); border: 2px solid var(--border);
-  border-radius: 12px; padding: 18px 20px;
-  font-size: 16px; color: var(--text-body);
-  font-family: var(--font-body); font-weight: 400;
-  outline: none; -webkit-appearance: none;
-  cursor: pointer;
-  transition: border-color 0.18s, background 0.18s;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aaa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 18px center;
-  padding-right: 44px;
-}
-.wiz-select:focus { border-color: var(--lime); background-color: var(--lime-pale); }
-.wiz-select option { background: white; }
-
-/* Textarea */
-.wiz-textarea {
-  width: 100%; resize: none;
-  background: var(--white-off); border: 2px solid var(--border);
-  border-radius: 12px; padding: 18px 20px;
-  font-size: 15px; color: var(--text-body); line-height: 1.6;
-  font-family: var(--font-body); font-weight: 400;
-  outline: none; min-height: 120px;
-  transition: border-color 0.18s, background 0.18s;
-}
-.wiz-textarea:focus { border-color: var(--lime); background: var(--lime-pale); }
-.wiz-textarea::placeholder { color: var(--border); }
-
-/* Nav buttons */
-.wiz-nav {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: auto; padding-top: 24px;
-}
-.wiz-btn-back {
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font-body); font-size: 13px; font-weight: 500;
-  color: var(--text-muted); padding: 8px 0;
-  display: flex; align-items: center; gap: 6px;
-  transition: color 0.18s;
-}
-.wiz-btn-back:hover { color: var(--text-body); }
-.wiz-btn-back:disabled { opacity: 0; pointer-events: none; }
-.wiz-btn-next {
-  background: var(--navy); color: white;
-  border: none; border-radius: 10px;
-  padding: 14px 32px;
+.fg input.error, .fg select.error { border-color: oklch(55% 0.2 25); }
+.fg .field-error { font-size: 11px; color: oklch(50% 0.18 25); margin-top: 2px; display: none; }
+.fg .field-error.show { display: block; }
+.fg select option { background: white; }
+.fg textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+.req { color: oklch(55% 0.2 25); }
+.btn-submit {
+  width: 100%; background: var(--navy); color: white;
+  padding: 17px; border: none; border-radius: 8px;
   font-family: var(--font-display); font-size: 12px;
   font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  cursor: pointer;
+  cursor: pointer; margin-top: 20px;
   transition: background 0.18s, transform 0.18s var(--ease-out-quart), box-shadow 0.18s;
-  display: flex; align-items: center; gap: 8px;
 }
-.wiz-btn-next:hover {
-  background: var(--lime-dark); transform: translateY(-1px);
-  box-shadow: 0 6px 20px oklch(55% 0.16 140 / 0.28);
-}
-.wiz-btn-next:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
-
-/* Skip link */
-.wiz-skip {
-  font-size: 11px; color: var(--text-muted); text-align: center;
-  margin-top: 10px; cursor: pointer; background: none; border: none;
-  font-family: var(--font-body); padding: 0;
-  transition: color 0.18s; display: block; width: 100%;
-}
-.wiz-skip:hover { color: var(--text-body); }
-
-/* Summary before submit */
-.wiz-summary {
-  background: var(--white-off); border: 1px solid var(--border);
-  border-radius: 12px; padding: 20px;
-  display: flex; flex-direction: column; gap: 10px;
-  margin-bottom: 20px;
-}
-.wiz-sum-row {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 12px;
-}
-.wiz-sum-k {
-  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-muted);
-  font-family: var(--font-body); white-space: nowrap;
-}
-.wiz-sum-v {
-  font-size: 13px; font-weight: 500; color: var(--text-body);
-  text-align: right;
-}
-
-/* Success */
-.wiz-success {
-  text-align: center; padding: 40px 16px;
-  display: none; flex-direction: column; align-items: center;
-}
-.wiz-success.show { display: flex; animation: fadeUp 0.5s var(--ease-out-quart) both; }
-.wiz-success-mark {
-  width: 64px; height: 64px; border-radius: 50%;
+.btn-submit:hover { background: var(--lime-dark); transform: translateY(-1px); box-shadow: 0 6px 24px oklch(55% 0.16 140 / 0.25); }
+.btn-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.form-note { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.65; }
+.form-note a { color: var(--lime-dark); text-decoration: none; }
+.success { text-align: center; padding: 48px 24px; display: none; }
+.success.show { display: block; animation: fadeUp 0.5s var(--ease-out-quart) both; }
+.success-mark {
+  width: 60px; height: 60px; border-radius: 50%;
   background: var(--lime-pale); border: 2px solid var(--lime);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px; font-size: 28px; color: var(--lime-dark);
+  margin: 0 auto 20px; font-size: 26px; color: var(--lime-dark);
 }
-.wiz-success h3 {
-  font-family: var(--font-display); font-size: 26px;
-  font-weight: 800; color: var(--lime-dark); margin-bottom: 10px;
-}
-.wiz-success p { font-size: 14px; color: var(--text-muted); line-height: 1.8; max-width: 30ch; }
-.wiz-success a { color: var(--lime-dark); text-decoration: none; font-weight: 600; }
+.success h3 { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--lime-dark); margin-bottom: 10px; }
+.success p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
 
 /* ============================================================
    FOOTER — dark navy
@@ -1304,210 +1162,95 @@ footer {
         </div>
       </div>
 
-      <!-- Right: wizard form -->
+      <!-- Right: form -->
       <div class="form-box" id="form-box">
+        <div id="form-fields">
+          <div class="form-title">Request a Quote</div>
+          <p class="form-sub">We'll call you back within 24 hours.</p>
 
-        <!-- Progress -->
-        <div class="wiz-progress" aria-hidden="true">
-          <div class="wiz-bar"><div class="wiz-bar-fill" id="wiz-fill"></div></div>
-          <div class="wiz-step-label" id="wiz-step-label">Step 1 of 6</div>
-        </div>
-
-        <!-- Steps -->
-        <div class="wiz-steps" id="wiz-steps">
-
-          <!-- Step 1: Boat type -->
-          <div class="wiz-step active" data-step="1">
-            <div class="wiz-q">What kind of boat is it?</div>
-            <div class="wiz-hint">Pick the one that fits best — doesn't have to be exact.</div>
-            <div class="wiz-options cols-3" role="group" aria-label="Boat type">
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Powerboat" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">⚡</span>
-                <span class="wiz-opt-label">Powerboat</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Sailboat" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">⛵</span>
-                <span class="wiz-opt-label">Sailboat</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Pontoon" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">🛥️</span>
-                <span class="wiz-opt-label">Pontoon</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Cabin Cruiser" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">🚢</span>
-                <span class="wiz-opt-label">Cabin Cruiser</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Commercial" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">⚓</span>
-                <span class="wiz-opt-label">Commercial</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="boat_type" data-val="Other" onclick="pickOpt(this,true)">
-                <span class="wiz-opt-icon">🔧</span>
-                <span class="wiz-opt-label">Other</span>
-              </button>
-            </div>
-            <div class="wiz-nav">
-              <button class="wiz-btn-back" disabled>← Back</button>
-              <button class="wiz-btn-next" onclick="wizNext(1)">Next →</button>
-            </div>
+          <p style="font-size:11px;color:var(--text-muted);margin-bottom:10px;font-weight:500;">Boat type (select all that apply):</p>
+          <div class="chips" role="group" aria-label="Boat types">
+            <button type="button" class="chip" onclick="toggleChip(this)">Powerboat</button>
+            <button type="button" class="chip" onclick="toggleChip(this)">Sailboat</button>
+            <button type="button" class="chip" onclick="toggleChip(this)">Pontoon</button>
+            <button type="button" class="chip" onclick="toggleChip(this)">Cabin Cruiser</button>
+            <button type="button" class="chip" onclick="toggleChip(this)">Commercial</button>
+            <button type="button" class="chip" onclick="toggleChip(this)">Other</button>
           </div>
 
-          <!-- Step 2: Condition -->
-          <div class="wiz-step" data-step="2">
-            <div class="wiz-q">What's the condition?</div>
-            <div class="wiz-hint">Be honest — we handle everything from perfect to sunken.</div>
-            <div class="wiz-options" role="group" aria-label="Boat condition">
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Runs fine" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">✅</span>
-                <span class="wiz-opt-label">Runs fine</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Needs work" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">🔨</span>
-                <span class="wiz-opt-label">Needs work</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Not running" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">🚫</span>
-                <span class="wiz-opt-label">Not running</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Storm / damage" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">🌪️</span>
-                <span class="wiz-opt-label">Storm damage</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Sunken / grounded" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">💧</span>
-                <span class="wiz-opt-label">Sunken / grounded</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="condition" data-val="Not sure" onclick="pickOpt(this,false); wizNext(2)">
-                <span class="wiz-opt-icon">🤷</span>
-                <span class="wiz-opt-label">Not sure</span>
-              </button>
+          <div class="frow">
+            <div class="fg">
+              <label for="f-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="f-name" autocomplete="name" required>
+              <span class="field-error" id="f-name-err">Please enter your name.</span>
             </div>
-            <div class="wiz-nav">
-              <button class="wiz-btn-back" onclick="wizBack(2)">← Back</button>
-              <button class="wiz-btn-next" onclick="wizNext(2)">Next →</button>
+            <div class="fg">
+              <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="f-phone" autocomplete="tel" required>
+              <span class="field-error" id="f-phone-err">Please enter a valid phone number.</span>
             </div>
           </div>
-
-          <!-- Step 3: Where -->
-          <div class="wiz-step" data-step="3">
-            <div class="wiz-q">Where is it right now?</div>
-            <div class="wiz-hint">We operate across FL, MN, and CA.</div>
-            <div class="wiz-options" role="group" aria-label="Boat location type">
-              <button type="button" class="wiz-opt" data-field="vessel_loc" data-val="Marina / Slip" onclick="pickOpt(this,false); wizNext(3)">
-                <span class="wiz-opt-icon">⚓</span>
-                <span class="wiz-opt-label">Marina / Slip</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="vessel_loc" data-val="Dry storage" onclick="pickOpt(this,false); wizNext(3)">
-                <span class="wiz-opt-icon">🏗️</span>
-                <span class="wiz-opt-label">Dry storage</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="vessel_loc" data-val="Private property" onclick="pickOpt(this,false); wizNext(3)">
-                <span class="wiz-opt-icon">🏡</span>
-                <span class="wiz-opt-label">Private property</span>
-              </button>
-              <button type="button" class="wiz-opt" data-field="vessel_loc" data-val="In the water" onclick="pickOpt(this,false); wizNext(3)">
-                <span class="wiz-opt-icon">🌊</span>
-                <span class="wiz-opt-label">In the water</span>
-              </button>
+          <div class="frow">
+            <div class="fg">
+              <label for="f-email">Email (optional)</label>
+              <input type="email" id="f-email" autocomplete="email">
             </div>
-            <div style="margin-top:12px;">
-              <select class="wiz-select" id="wiz-state" onchange="wizData.state=this.value">
-                <option value="">State — Florida, Minnesota, or California</option>
+            <div class="fg">
+              <label for="f-state">State <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-state" required>
+                <option value="">Select state</option>
                 <option>Florida</option>
                 <option>Minnesota</option>
                 <option>California</option>
               </select>
-            </div>
-            <div class="wiz-nav">
-              <button class="wiz-btn-back" onclick="wizBack(3)">← Back</button>
-              <button class="wiz-btn-next" onclick="wizNext(3)">Next →</button>
+              <span class="field-error" id="f-state-err">Please select a state.</span>
             </div>
           </div>
-
-          <!-- Step 4: Size -->
-          <div class="wiz-step" data-step="4">
-            <div class="wiz-q">How long is the boat?</div>
-            <div class="wiz-hint">Roughly in feet — this helps us price it quickly. Skip if you're not sure.</div>
-            <div class="wiz-input-wrap">
-              <input type="number" class="wiz-input" id="wiz-length" min="8" max="300"
-                placeholder="e.g. 28 ft"
-                oninput="wizData.length=this.value"
-                onkeydown="if(event.key==='Enter') wizNext(4)">
+          <div class="frow">
+            <div class="fg">
+              <label for="f-city">City / Marina</label>
+              <input type="text" id="f-city" placeholder="e.g. Tampa">
             </div>
-            <div class="wiz-nav">
-              <button class="wiz-btn-back" onclick="wizBack(4)">← Back</button>
-              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-                <button class="wiz-btn-next" onclick="wizNext(4)">Next →</button>
-                <button class="wiz-skip" onclick="wizData.length=''; wizNext(4)">Skip — I'm not sure</button>
-              </div>
+            <div class="fg">
+              <label for="f-length">Boat Length (ft)</label>
+              <input type="number" id="f-length" min="8" max="200" placeholder="e.g. 28">
             </div>
           </div>
-
-          <!-- Step 5: Contact -->
-          <div class="wiz-step" data-step="5">
-            <div class="wiz-q">How do we reach you?</div>
-            <div class="wiz-hint">We'll call you within 24 hours with a firm price. No pressure.</div>
-            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:8px;">
-              <div>
-                <input type="text" class="wiz-input" id="wiz-name" placeholder="Your name"
-                  autocomplete="name"
-                  oninput="wizData.name=this.value"
-                  onkeydown="if(event.key==='Enter') document.getElementById('wiz-phone').focus()">
-                <div class="wiz-input-err" id="wiz-name-err">Please enter your name.</div>
-              </div>
-              <div>
-                <input type="tel" class="wiz-input" id="wiz-phone" placeholder="Phone number"
-                  autocomplete="tel"
-                  oninput="wizData.phone=this.value"
-                  onkeydown="if(event.key==='Enter') wizNext(5)">
-                <div class="wiz-input-err" id="wiz-phone-err">Please enter a valid phone number.</div>
-              </div>
-              <input type="email" class="wiz-input" id="wiz-email" placeholder="Email (optional)"
-                autocomplete="email" style="font-size:15px;"
-                oninput="wizData.email=this.value">
-            </div>
-            <div class="wiz-nav">
-              <button class="wiz-btn-back" onclick="wizBack(5)">← Back</button>
-              <button class="wiz-btn-next" onclick="wizNext(5)">Review →</button>
+          <div class="frow">
+            <div class="fg full">
+              <label for="f-loc">Where is the boat currently?</label>
+              <select id="f-loc">
+                <option value="">Select location type</option>
+                <option>Marina / Slip</option>
+                <option>Dry storage</option>
+                <option>Private property</option>
+                <option>In the water (floating)</option>
+                <option>Sunken / grounded</option>
+              </select>
             </div>
           </div>
-
-          <!-- Step 6: Review + submit -->
-          <div class="wiz-step" data-step="6">
-            <div class="wiz-q">Looks good?</div>
-            <div class="wiz-hint">Here's what we'll send to our team.</div>
-            <div class="wiz-summary" id="wiz-summary"></div>
-            <div style="margin-bottom:12px;">
-              <textarea class="wiz-textarea" id="wiz-notes" placeholder="Anything else? Access issues, urgency, special circumstances… (optional)"
-                oninput="wizData.notes=this.value"></textarea>
-            </div>
-            <button class="wiz-btn-next" style="width:100%;justify-content:center;padding:17px;" id="wiz-submit-btn" onclick="wizSubmit()">
-              Send My Quote Request
-            </button>
-            <p style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px;line-height:1.65;">
-              By submitting you agree to be contacted. Questions?
-              <a href="mailto:keylimemaritime@gmail.com" style="color:var(--lime-dark);text-decoration:none;">keylimemaritime@gmail.com</a>
-            </p>
-            <div class="wiz-nav" style="padding-top:12px;">
-              <button class="wiz-btn-back" onclick="wizBack(6)">← Edit answers</button>
+          <div class="frow">
+            <div class="fg full">
+              <label for="f-details">Anything else we should know?</label>
+              <textarea id="f-details" placeholder="Condition, access restrictions, urgency…"></textarea>
             </div>
           </div>
-
-        </div><!-- /wiz-steps -->
-
-        <!-- Success -->
-        <div class="wiz-success" id="wiz-success">
-          <div class="wiz-success-mark">✓</div>
-          <h3>You're on our list.</h3>
-          <p>
-            We'll call you within 24 hours with a firm quote.<br>
-            No pressure, no obligation.<br><br>
-            Need to talk now?<br>
-            <a href="tel:+14244103376">(424) 410-3376</a>
+          <button class="btn-submit" id="btn-submit" onclick="submitLead()">Request My Free Quote</button>
+          <p class="form-note">
+            By submitting you agree to be contacted about your removal request.
+            Questions? <a href="mailto:keylimemaritime@gmail.com">keylimemaritime@gmail.com</a>
           </p>
         </div>
 
-      </div><!-- /form-box -->
+        <div class="success" id="form-success">
+          <div class="success-mark">✓</div>
+          <h3>You're on our list.</h3>
+          <p>
+            We'll call you within 24 hours with a firm quote. No pressure, no obligation.<br>
+            Need to talk now? <a href="tel:+14244103376" style="color:var(--lime-dark);text-decoration:none;">(424) 410-3376</a>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1670,126 +1413,51 @@ async function submitHeroForm() {
   }
 }
 
-// ── Wizard form ──────────────────────────────────────────
-const TOTAL_STEPS = 6;
-const wizData = { boat_type:'', condition:'', vessel_loc:'', state:'', length:'', name:'', phone:'', email:'', notes:'' };
-let currentStep = 1;
-
-function wizUpdateProgress(step) {
-  document.getElementById('wiz-fill').style.width = ((step-1)/(TOTAL_STEPS-1)*100) + '%';
-  document.getElementById('wiz-step-label').textContent = 'Step ' + step + ' of ' + TOTAL_STEPS;
-}
-
-function pickOpt(el, multi) {
-  const group = el.closest('.wiz-options');
-  if (!multi) group.querySelectorAll('.wiz-opt').forEach(o => o.classList.remove('on'));
-  el.classList.toggle('on');
-  // store value
-  const field = el.dataset.field;
-  if (!multi) {
-    wizData[field] = el.classList.contains('on') ? el.dataset.val : '';
-  } else {
-    const selected = [...group.querySelectorAll('.wiz-opt.on')].map(o=>o.dataset.val);
-    wizData[field] = selected.join(', ');
-  }
-}
-
-function wizGoTo(step) {
-  const current = document.querySelector('.wiz-step.active');
-  if (current) {
-    current.classList.add('exit');
-    setTimeout(() => current.classList.remove('active','exit'), 280);
-  }
-  setTimeout(() => {
-    const next = document.querySelector('.wiz-step[data-step="'+step+'"]');
-    if (next) {
-      next.classList.add('active');
-      // auto-focus first input in step
-      const inp = next.querySelector('input,select,textarea');
-      if (inp) setTimeout(() => inp.focus(), 60);
-    }
-    currentStep = step;
-    wizUpdateProgress(step);
-    if (step === 6) wizBuildSummary();
-  }, 120);
-}
-
-function wizNext(fromStep) {
-  // Validate per step
-  if (fromStep === 5) {
-    const nameOk  = wizData.name.trim().length >= 2;
-    const phoneOk = /^[\d\s\(\)\-\+\.]{7,}$/.test(wizData.phone.trim());
-    const ne = document.getElementById('wiz-name-err');
-    const pe = document.getElementById('wiz-phone-err');
-    const ni = document.getElementById('wiz-name');
-    const pi = document.getElementById('wiz-phone');
-    ni.classList.toggle('error', !nameOk);
-    ne.classList.toggle('show', !nameOk);
-    pi.classList.toggle('error', !phoneOk);
-    pe.classList.toggle('show', !phoneOk);
-    if (!nameOk || !phoneOk) return;
-  }
-  if (fromStep === 3) {
-    wizData.state = document.getElementById('wiz-state').value;
-  }
-  if (fromStep < TOTAL_STEPS) wizGoTo(fromStep + 1);
-}
-
-function wizBack(fromStep) {
-  if (fromStep > 1) wizGoTo(fromStep - 1);
-}
-
-function wizBuildSummary() {
-  const rows = [
-    ['Boat type',  wizData.boat_type  || '—'],
-    ['Condition',  wizData.condition  || '—'],
-    ['Location',   wizData.vessel_loc || '—'],
-    ['State',      wizData.state      || '—'],
-    ['Length',     wizData.length ? wizData.length + ' ft' : '—'],
-    ['Name',       wizData.name       || '—'],
-    ['Phone',      wizData.phone      || '—'],
-  ];
-  document.getElementById('wiz-summary').innerHTML = rows.map(([k,v]) =>
-    `<div class="wiz-sum-row"><span class="wiz-sum-k">${k}</span><span class="wiz-sum-v">${v}</span></div>`
-  ).join('');
-}
-
-async function wizSubmit() {
-  const btn = document.getElementById('wiz-submit-btn');
+// Main form
+async function submitLead() {
+  const nameOk  = validateField('f-name',  'f-name-err',  v => v.length >= 2);
+  const phoneOk = validateField('f-phone', 'f-phone-err', v => /^[\d\s\(\)\-\+\.]{7,}$/.test(v));
+  const stateOk = validateField('f-state', 'f-state-err', v => v !== '');
+  if (!nameOk || !phoneOk || !stateOk) return;
+  const btn = document.getElementById('btn-submit');
   btn.disabled = true; btn.textContent = 'Sending…';
+  const chips = [...document.querySelectorAll('.chip.on')].map(c => c.textContent.trim());
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
+    const res  = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         access_key:  'f2699280-1aa1-4234-b7cd-acbfd6855ac8',
-        subject:     'Boat Removal Quote — ' + (wizData.name || 'Unknown'),
+        subject:     'Boat Removal Quote — ' + document.getElementById('f-name').value.trim(),
         from_name:   'Key Lime Maritime Website',
-        name:        wizData.name,
-        phone:       wizData.phone,
-        email:       wizData.email || '—',
-        state:       wizData.state,
-        boat_type:   wizData.boat_type,
-        condition:   wizData.condition,
-        vessel_loc:  wizData.vessel_loc,
-        length:      wizData.length || '—',
-        notes:       wizData.notes  || '—',
+        name:        document.getElementById('f-name').value.trim(),
+        phone:       document.getElementById('f-phone').value.trim(),
+        email:       document.getElementById('f-email').value || '—',
+        state:       document.getElementById('f-state').value,
+        location:    document.getElementById('f-city').value   || '—',
+        length:      document.getElementById('f-length').value || '—',
+        vessel_loc:  document.getElementById('f-loc').value    || '—',
+        vessel_type: chips.length ? chips.join(', ') : '—',
+        message:     document.getElementById('f-details').value || '—',
       }),
     });
     const data = await res.json();
     if (data.success) {
-      document.getElementById('wiz-steps').style.display = 'none';
-      document.querySelector('.wiz-progress').style.display = 'none';
-      document.getElementById('wiz-success').classList.add('show');
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('form-success').classList.add('show');
     } else throw new Error(data.message);
   } catch(err) {
     alert('Something went wrong. Please call (424) 410-3376 or email keylimemaritime@gmail.com.\n\n(' + err.message + ')');
-    btn.disabled = false; btn.textContent = 'Send My Quote Request';
+    btn.disabled = false; btn.textContent = 'Request My Free Quote';
   }
 }
 
-// init progress
-wizUpdateProgress(1);
+// Live blur validation
+[['f-name','f-name-err', v=>v.length>=2], ['f-phone','f-phone-err', v=>/^[\d\s\(\)\-\+\.]{7,}$/.test(v)], ['f-state','f-state-err', v=>v!=='']].forEach(([id,errId,check]) => {
+  const el = document.getElementById(id);
+  el.addEventListener('blur',  () => validateField(id, errId, check));
+  el.addEventListener('input', () => { el.classList.remove('error'); const e = document.getElementById(errId); if(e) e.classList.remove('show'); });
+});
 </script>
 </body>
 </html>
