@@ -158,13 +158,13 @@ nav.scrolled { background: oklch(9% 0.02 240 / 0.97); }
 }
 .hero-photo {
   position: absolute; inset: 0;
-  background-image: url('abandonedmarinavessel.jpg');
+  background-image: url('sailboatowtruck.jpg');
   background-size: cover; background-position: center 40%;
-  opacity: 0.28;
-  transform: scale(1.04);
+  opacity: 0.35;
+  transform: scale(1.0);
   transition: transform 8s ease-out;
 }
-.hero-photo.loaded { transform: scale(1); }
+.hero-photo.loaded { transform: scale(1); } 
 .hero-vignette {
   position: absolute; inset: 0;
   background:
@@ -411,14 +411,14 @@ h2.section-title {
   gap: 40px; margin-bottom: 80px;
 }
 .how-photo-strip {
-  width: 100%; height: 260px; position: relative;
+  width: 100%; height: 320px; position: relative;
   border-radius: 16px; overflow: hidden;
   margin-bottom: 72px;
 }
 .how-photo-strip img {
   width: 100%; height: 100%; object-fit: cover;
   object-position: center 55%;
-  filter: saturate(0.75) brightness(0.82);
+  filter: saturate(0.85) brightness(0.92);
 }
 /* Gradient fade at left and right edges so it bleeds naturally */
 .how-photo-strip::before {
@@ -473,7 +473,7 @@ h2.section-title {
   filter: saturate(0.82) brightness(0.9);
   transition: transform 0.7s var(--ease-out-quart), filter 0.4s;
 }
-.services-visual:hover img { transform: scale(1.04); filter: saturate(0.95) brightness(0.95); }
+.services-visual:hover img { transform: scale(1.0); filter: saturate(0.95) brightness(0.95); }
 .services-badge {
   position: absolute; bottom: 24px; left: 24px;
   background: var(--lime); color: var(--navy);
@@ -591,11 +591,11 @@ h2.section-title {
 }
 .quote-photo img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: saturate(0.78) brightness(0.85);
+  filter: saturate(0.6) brightness(0.5);
 }
 .quote-photo-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, oklch(14% 0.03 240 / 0.82) 0%, transparent 55%);
+  background: linear-gradient(to top, oklch(14% 0.03 240 / 0.95) 0%, oklch(14% 0.03 240 / 0.65) 55%, oklch(14% 0.03 240 / 0.4) 100%);
 }
 .quote-photo-text {
   position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
@@ -972,8 +972,8 @@ footer {
 
     <div class="how-photo-strip reveal">
       <img
-        src="sailboatcrane.jpg"
-        alt="Boat being hauled out of the water at a marina"
+        src="sailboattow.jpg"
+        alt="Sailboat being towed on a trailer"
         loading="lazy"
       >
     </div>
@@ -1004,14 +1004,14 @@ footer {
     <div class="services-layout">
       <div class="services-visual">
         <img
-          src="tarilerboatambulance.png"
-          alt="Boat removal crew working at a marina"
+          src="abandonedmarinavessel.jpg"
+          alt="Abandoned vessel at a marina dock"
           loading="lazy"
         >
         <div class="services-img2">
           <img
-            src="sailboatowtruck.jpg"
-            alt="Aerial view of marina"
+            src="sailboatcrane.jpg"
+            alt="Sailboat being lifted by crane for removal"
             loading="lazy"
           >
         </div>
@@ -1072,20 +1072,20 @@ footer {
 <!-- ===================== GALLERY STRIP ===================== -->
 <div class="gallery-strip" aria-label="Photo gallery of boat removals" role="img">
   <div class="gallery-strip-item">
-    <img src="excavatorsailboatremoval.jpg" alt="Boat at sunset on open water" loading="lazy">
-    <div class="gallery-strip-caption">Open Water</div>
+    <img src="sailboatowtruck.jpg" alt="Sailboat loaded on trailer ready for removal" loading="lazy">
+    <div class="gallery-strip-caption">Trailer Removal</div>
   </div>
   <div class="gallery-strip-item">
-    <img src="oldblueboat.png" alt="Marina with docked boats" loading="lazy">
-    <div class="gallery-strip-caption">Marina Removal</div>
+    <img src="excavatorsailboatremoval.jpg" alt="Excavator removing a sailboat at a disposal site" loading="lazy">
+    <div class="gallery-strip-caption">Disposal</div>
   </div>
   <div class="gallery-strip-item">
-    <img src="sailboattow.jpg" alt="Boat hull out of water" loading="lazy">
+    <img src="trailerboatambulance.png" alt="Boat on trailer being hauled away" loading="lazy">
     <div class="gallery-strip-caption">Haul-Out</div>
   </div>
   <div class="gallery-strip-item">
-    <img src="trailerboatambulance.png" alt="Coastal water at dusk" loading="lazy">
-    <div class="gallery-strip-caption">Coastal FL</div>
+    <img src="sailboatcrane.jpg" alt="Crane lifting a sailboat for removal" loading="lazy">
+    <div class="gallery-strip-caption">Crane Lift</div>
   </div>
 </div>
 
@@ -1144,8 +1144,8 @@ footer {
       <!-- Left: photo with text overlay -->
       <div class="quote-photo">
         <img
-          src="sailboatowtruck.jpg"
-          alt="Boat removal team at work on the water"
+          src="oldblueboat.png"
+          alt="Abandoned boat on a trailer in overgrown lot"
           loading="lazy"
         >
         <div class="quote-photo-overlay" aria-hidden="true"></div>
