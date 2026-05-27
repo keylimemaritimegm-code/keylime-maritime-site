@@ -664,7 +664,8 @@ h2.section-title {
 }
 .quote-photo-text .eyebrow { color: var(--lime); margin-bottom: 8px; }
 .quote-photo-text .eyebrow::before { background: var(--lime); }
-.quote-photo-text h2.section-title { color: white; font-size: clamp(26px, 3.5vw, 38px); margin-bottom: 20px; }
+.quote-photo-text h2.section-title { color: white; font-size: clamp(32px, 3.8vw, 48px); margin-bottom: 10px; }
+.quote-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 24px; font-weight: 300; line-height: 1.6; }
 .perks { display: flex; flex-direction: column; gap: 12px; }
 .perk { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 300; }
 .perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
@@ -734,6 +735,79 @@ h2.section-title {
 .success p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
 
 /* ============================================================
+   FAQ + PRICING
+   ============================================================ */
+.faq-section { background: var(--white); border-top: 1px solid var(--border); }
+.faq-layout {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 80px; align-items: start;
+}
+.faq-pricing .section-title { margin-bottom: 8px; }
+.pricing-card {
+  margin-top: 36px;
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+}
+.pricing-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 28px 28px 24px;
+  background: oklch(98% 0.006 240);
+}
+.pricing-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 500; font-family: var(--font-body); }
+.pricing-val { font-family: var(--font-display); font-size: 48px; font-weight: 900; color: var(--navy); letter-spacing: -2px; line-height: 1; }
+.pricing-unit { font-size: 20px; font-weight: 400; color: var(--text-muted); letter-spacing: 0; }
+.pricing-divider { height: 1px; background: var(--border); }
+.pricing-example { padding: 20px 28px; display: flex; flex-direction: column; gap: 12px; }
+.pricing-ex-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-muted); }
+.pricing-ex-val { font-weight: 600; color: var(--text-body); font-family: var(--font-display); }
+.pricing-note {
+  padding: 16px 28px 20px; font-size: 11px; color: var(--text-muted);
+  line-height: 1.75; border-top: 1px solid var(--border);
+  background: oklch(98% 0.006 240);
+}
+
+/* FAQ accordion */
+.faq-list .eyebrow { margin-bottom: 28px; }
+.faq-items { display: flex; flex-direction: column; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:first-of-type { border-top: 1px solid var(--border); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; padding: 20px 0;
+  font-size: 15px; font-weight: 600; color: var(--text-body);
+  font-family: var(--font-display); letter-spacing: -0.2px;
+  cursor: pointer; list-style: none; user-select: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+'; font-size: 20px; font-weight: 300;
+  color: var(--text-muted); flex-shrink: 0;
+  transition: transform 0.22s var(--ease-out-quart), color 0.18s;
+  line-height: 1;
+}
+.faq-item[open] .faq-q::after { transform: rotate(45deg); color: var(--lime-dark); }
+.faq-item[open] .faq-q { color: var(--navy); }
+.faq-a {
+  padding: 0 0 20px;
+  font-size: 14px; color: var(--text-muted);
+  line-height: 1.8; font-weight: 300;
+  max-width: 52ch;
+}
+
+/* Mobile FAQ + Pricing */
+@media (max-width: 767px) {
+  .faq-layout { grid-template-columns: 1fr; gap: 48px; }
+  .pricing-val { font-size: 40px; }
+  .pricing-row { padding: 22px 20px 18px; }
+  .pricing-example { padding: 16px 20px; }
+  .pricing-note { padding: 14px 20px 18px; }
+  .faq-q { font-size: 14px; padding: 18px 0; }
+  .faq-a { font-size: 13px; }
+}
+
+/* ============================================================
    FOOTER — dark navy
    ============================================================ */
 footer {
@@ -743,7 +817,7 @@ footer {
 }
 .footer-inner { max-width: var(--max-w); margin: 0 auto; }
 .footer-top {
-  display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: 48px; padding-bottom: 48px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
@@ -753,7 +827,12 @@ footer {
   text-transform: uppercase; margin-bottom: 10px;
 }
 .footer-brand h3 em { color: var(--lime); font-style: normal; }
-.footer-brand p { font-size: 12px; line-height: 1.85; max-width: 26ch; color: rgba(255,255,255,0.38); }
+.footer-brand p { font-size: 12px; line-height: 1.85; max-width: 30ch; color: rgba(255,255,255,0.38); margin-bottom: 14px; }
+.footer-addresses-inline {
+  display: flex; flex-wrap: wrap; gap: 4px 8px;
+  font-size: 11px; color: rgba(255,255,255,0.22);
+}
+.footer-addr-sep { color: rgba(255,255,255,0.15); }
 .footer-col h4 {
   font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
   text-transform: uppercase; color: rgba(255,255,255,0.65);
@@ -762,23 +841,8 @@ footer {
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-col a { text-decoration: none; color: rgba(255,255,255,0.38); font-size: 13px; transition: color 0.18s; }
 .footer-col a:hover { color: white; }
-.footer-addresses {
-  margin-top: 32px; padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-}
-.address-block h5 {
-  font-size: 10px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase; color: rgba(255,255,255,0.45);
-  margin-bottom: 8px; font-family: var(--font-body);
-}
-.address-block address {
-  font-style: normal; font-size: 12px;
-  color: rgba(255,255,255,0.3); line-height: 1.75;
-}
-.address-block strong { color: rgba(255,255,255,0.6); font-weight: 500; }
 .footer-bottom {
-  margin-top: 32px; padding-top: 24px;
+  margin-top: 24px; padding-top: 24px;
   border-top: 1px solid rgba(255,255,255,0.05);
   display: flex; justify-content: space-between; align-items: center;
   font-size: 11px; color: rgba(255,255,255,0.2);
@@ -826,6 +890,8 @@ footer {
 .reveal-d1 { transition-delay: 0.1s; }
 .reveal-d2 { transition-delay: 0.2s; }
 .reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
 
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
@@ -1057,13 +1123,15 @@ footer {
   /* --- FOOTER --- */
   footer { padding: 48px var(--px) 28px; }
   .footer-top {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    padding-bottom: 36px;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+    padding-bottom: 32px;
   }
+  .footer-brand { grid-column: 1 / -1; }
   .footer-brand p { max-width: none; }
+  .footer-addresses-inline { flex-direction: column; gap: 2px; }
+  .footer-addr-sep { display: none; }
   .footer-col h4 { margin-bottom: 14px; }
-  .footer-addresses { grid-template-columns: 1fr; gap: 20px; }
   .footer-bottom {
     flex-direction: column;
     gap: 6px;
@@ -1490,6 +1558,74 @@ footer {
   </div>
 </section>
 
+<!-- ===================== PRICING + FAQ ===================== -->
+<section class="section faq-section" id="faq" aria-labelledby="faq-h2">
+  <div class="section-inner">
+    <div class="faq-layout">
+
+      <!-- Left: pricing -->
+      <div class="faq-pricing">
+        <div class="eyebrow">Pricing</div>
+        <h2 class="section-title reveal" id="faq-h2">Simple, honest pricing.</h2>
+        <p class="section-desc reveal reveal-d1">No surprises. No hourly rates. One flat quote before we touch anything.</p>
+
+        <div class="pricing-card reveal reveal-d2">
+          <div class="pricing-row">
+            <span class="pricing-label">Starting rate</span>
+            <span class="pricing-val">$50 <span class="pricing-unit">/ ft</span></span>
+          </div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-example">
+            <div class="pricing-ex-row"><span>24ft runabout</span><span class="pricing-ex-val">~$1,200</span></div>
+            <div class="pricing-ex-row"><span>32ft cabin cruiser</span><span class="pricing-ex-val">~$1,600</span></div>
+            <div class="pricing-ex-row"><span>40ft sailboat</span><span class="pricing-ex-val">~$2,000</span></div>
+          </div>
+          <div class="pricing-note">Rates vary by condition, location, and access. In-water extractions and storm jobs are quoted individually. Your quote is locked — no add-ons after the fact.</div>
+        </div>
+      </div>
+
+      <!-- Right: FAQ accordion -->
+      <div class="faq-list" role="list">
+        <div class="eyebrow">FAQ</div>
+        <div class="faq-items">
+
+          <details class="faq-item reveal">
+            <summary class="faq-q">Do I need to have the title?</summary>
+            <div class="faq-a">Having the title makes things faster, but it's not always required. We handle title research and surety bond processes for abandoned or title-less vessels — it's part of what we do. Tell us your situation when you call and we'll advise.</div>
+          </details>
+
+          <details class="faq-item reveal reveal-d1">
+            <summary class="faq-q">What if the boat is sunken or can't be trailered?</summary>
+            <div class="faq-a">That's a specialty of ours. We have the equipment for in-water extractions, grounded vessels, and boats in difficult access locations. It affects the quote but it doesn't affect whether we can help.</div>
+          </details>
+
+          <details class="faq-item reveal reveal-d2">
+            <summary class="faq-q">Do you work with insurance companies?</summary>
+            <div class="faq-a">Yes. For storm damage claims we coordinate directly with adjusters, provide documentation, and handle the timeline around claim approvals. We've done this enough times that we know what insurers need.</div>
+          </details>
+
+          <details class="faq-item reveal reveal-d3">
+            <summary class="faq-q">How fast can you actually show up?</summary>
+            <div class="faq-a">Most jobs are scheduled within 3–7 days of accepting the quote. Storm emergencies and marina-pressure situations move faster. We'll tell you a realistic date on the call — not a vague "soon."</div>
+          </details>
+
+          <details class="faq-item reveal reveal-d4">
+            <summary class="faq-q">What happens to my boat after removal?</summary>
+            <div class="faq-a">Vessels in sellable condition are resold or donated. Non-salvageable boats are properly dismantled and disposed of through licensed facilities. We handle the title surrender and environmental compliance so nothing comes back to you.</div>
+          </details>
+
+          <details class="faq-item reveal reveal-d5">
+            <summary class="faq-q">Is there anything you won't take?</summary>
+            <div class="faq-a">We handle almost everything. Very large commercial vessels (over 80ft) and boats with active hazmat situations may need a different approach — call us and we'll be straight with you about whether we're the right fit.</div>
+          </details>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===================== QUOTE FORM ===================== -->
 <section class="section quote-section" id="quote" aria-labelledby="quote-h2">
   <div class="section-inner">
@@ -1505,13 +1641,13 @@ footer {
         <div class="quote-photo-overlay" aria-hidden="true"></div>
         <div class="quote-photo-text">
           <div class="eyebrow">Free Quote</div>
-          <h2 class="section-title" id="quote-h2">Ready to make it someone else's problem?</h2>
+          <h2 class="section-title" id="quote-h2">One call. It's gone.</h2>
+          <p class="quote-sub">One call away from never seeing your boat again.</p>
           <div class="perks">
-            <div class="perk"><div class="perk-dot" aria-hidden="true"></div>No obligation, ever</div>
             <div class="perk"><div class="perk-dot" aria-hidden="true"></div>Firm price within 24 hours</div>
-            <div class="perk"><div class="perk-dot" aria-hidden="true"></div>All paperwork included</div>
-            <div class="perk"><div class="perk-dot" aria-hidden="true"></div>Licensed in FL, MN, and CA</div>
+            <div class="perk"><div class="perk-dot" aria-hidden="true"></div>We handle all paperwork and title</div>
             <div class="perk"><div class="perk-dot" aria-hidden="true"></div>Any condition, any size</div>
+            <div class="perk"><div class="perk-dot" aria-hidden="true"></div>No obligation, ever</div>
           </div>
         </div>
       </div>
@@ -1613,13 +1749,20 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
+
       <div class="footer-brand">
         <div class="footer-brand-name">
           <img src="limelogovector-clean.svg" alt="" class="footer-logo-img" aria-hidden="true">
           <h3>Key <em>Lime</em> Maritime</h3>
         </div>
         <p>Licensed direct boat removal and disposal across Florida, Minnesota, and California.</p>
+        <div class="footer-addresses-inline">
+          <span>Tampa, FL 33611</span>
+          <span class="footer-addr-sep">·</span>
+          <span>Fort Ripley, MN 56449</span>
+        </div>
       </div>
+
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
@@ -1629,34 +1772,17 @@ footer {
           <li><a href="#services">Full Disposal</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Areas</h4>
-        <ul>
-          <li><a href="#quote">Florida Statewide</a></li>
-          <li><a href="#quote">Tampa Bay</a></li>
-          <li><a href="#quote">Minnesota</a></li>
-          <li><a href="#quote">California</a></li>
-        </ul>
-      </div>
+
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:+14244103376">(424) 410-3376</a></li>
           <li><a href="mailto:keylimemaritime@gmail.com">keylimemaritime@gmail.com</a></li>
-          <li><a href="#quote">Free Quote</a></li>
+          <li><a href="#quote">Get a Free Quote</a></li>
+          <li><a href="#faq">Pricing & FAQ</a></li>
         </ul>
       </div>
-    </div>
 
-    <div class="footer-addresses">
-      <div class="address-block">
-        <h5>Principal Address</h5>
-        <address><strong>3805 South Randall Street</strong><br>Tampa, FL 33611</address>
-      </div>
-      <div class="address-block">
-        <h5>Mailing Address</h5>
-        <address><strong>2927 Meyer Road</strong><br>Fort Ripley, MN 56449</address>
-      </div>
     </div>
 
     <!-- Sunbiz verification -->
