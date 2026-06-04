@@ -542,64 +542,59 @@ h2.section-title {
 }
 
 /* ============================================================
-   GALLERY STRIP — full bleed between sections
+   GALLERY GRID — full grid, all photos, no scroll
    ============================================================ */
-.gallery-strip {
-  width: 100%; overflow: hidden;
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  height: 300px; gap: 3px;
+.gallery-section {
+  background: var(--navy-mid);
+  padding: var(--py-lg) var(--px);
 }
-.gallery-strip-item { overflow: hidden; position: relative; }
-.gallery-strip-item img {
+.gallery-section-inner {
+  max-width: var(--max-w); margin: 0 auto;
+}
+.gallery-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px;
+}
+.gallery-header .eyebrow { color: var(--lime); margin-bottom: 0; }
+.gallery-header .eyebrow::before { background: var(--lime); }
+.gallery-header h2.section-title { color: white; margin-bottom: 0; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 6px;
+}
+/* Two featured cells span 2 columns for visual rhythm */
+.gallery-grid-item { overflow: hidden; position: relative; border-radius: 10px; }
+.gallery-grid-item.wide { grid-column: span 2; }
+.gallery-grid-item img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: saturate(0.78) brightness(0.85);
+  filter: saturate(0.8) brightness(0.84);
   transition: transform 0.6s var(--ease-out-quart), filter 0.4s;
 }
-.gallery-strip-item:hover img { transform: scale(1.06); filter: saturate(0.95) brightness(0.92); }
-.gallery-strip-caption {
-  position: absolute; bottom: 12px; left: 12px;
-  background: rgba(255,255,255,0.92);
+.gallery-grid-item:hover img { transform: scale(1.05); filter: saturate(1) brightness(0.95); }
+.gallery-grid-caption {
+  position: absolute; bottom: 10px; left: 10px;
+  background: rgba(255,255,255,0.9);
   color: var(--navy); font-size: 10px; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
   padding: 4px 10px; border-radius: 4px;
   font-family: var(--font-body);
 }
 
-/* Mobile carousel — activated via media query */
-.gallery-carousel {
-  display: none;
-  width: 100%; overflow-x: auto; overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  height: 220px;
+@media (max-width: 1023px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
+  .gallery-grid-item.wide { grid-column: span 2; }
 }
-.gallery-carousel::-webkit-scrollbar { display: none; }
-.gallery-carousel-inner {
-  display: flex; gap: 3px;
-  height: 100%; padding: 0 calc(var(--px) * 0.5);
-  width: max-content;
+@media (max-width: 767px) {
+  .gallery-section { padding: 48px var(--px); }
+  .gallery-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; gap: 4px; }
+  .gallery-grid-item.wide { grid-column: span 2; }
+  .gallery-grid-item { border-radius: 8px; }
 }
-.gallery-carousel .gallery-strip-item {
-  flex: 0 0 72vw; max-width: 280px;
-  scroll-snap-align: center;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.gallery-carousel-dots {
-  display: none;
-  justify-content: center; gap: 6px;
-  padding: 12px 0 0;
-}
-.gallery-carousel-dots span {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: rgba(0,0,0,0.18);
-  transition: background 0.2s, transform 0.2s;
-  cursor: pointer;
-}
-.gallery-carousel-dots span.active {
-  background: var(--lime-dark); transform: scale(1.35);
+@media (max-width: 479px) {
+  .gallery-grid { grid-auto-rows: 140px; }
 }
 
 /* ============================================================
@@ -1055,10 +1050,7 @@ footer {
     padding: 14px 16px;
   }
 
-  /* --- GALLERY — swap to swipeable carousel --- */
-  .gallery-strip { display: none; }
-  .gallery-carousel { display: flex; }
-  .gallery-carousel-dots { display: flex; }
+  /* --- GALLERY --- */
 
   /* --- TESTIMONIALS --- */
   .testimonials-section { padding: var(--py-xl) var(--px); }
@@ -1174,10 +1166,6 @@ footer {
   .quote-photo-text h2.section-title {
     font-size: clamp(24px, 9.5vw, 34px) !important;
   }
-
-  /* Gallery carousel */
-  .gallery-carousel { height: 190px; }
-  .gallery-carousel .gallery-strip-item { flex: 0 0 82vw; }
 
   /* Testimonials */
   .testimonial { padding: 20px 16px; }
@@ -1463,62 +1451,66 @@ footer {
   </div>
 </section>
 
-<!-- ===================== GALLERY STRIP ===================== -->
-<div class="gallery-strip" aria-label="Photo gallery of boat removals" role="img">
-  <div class="gallery-strip-item">
-    <img src="boatontrailerreadyforremoval.jpg" alt="Boat on trailer staged and ready for removal" loading="lazy">
-    <div class="gallery-strip-caption">Ready for Removal</div>
-  </div>
-  <div class="gallery-strip-item">
-    <img src="trailerbringingboatoutofwater.jpg" alt="Trailer hauling a boat out of the water" loading="lazy">
-    <div class="gallery-strip-caption">Haul-Out</div>
-  </div>
-  <div class="gallery-strip-item">
-    <img src="excavatorboatdesmanteling.jpg" alt="Excavator dismantling a boat at disposal site" loading="lazy">
-    <div class="gallery-strip-caption">Disposal</div>
-  </div>
-  <div class="gallery-strip-item">
-    <img src="traileroversizehaulingboat.jpg" alt="Oversize trailer hauling a large boat" loading="lazy">
-    <div class="gallery-strip-caption">Oversize Haul</div>
-  </div>
-  <div class="gallery-strip-item">
-    <img src="nighttimeabandonedvesseltrailerpickupfromwater.jpg" alt="Nighttime trailer pickup of abandoned vessel from water" loading="lazy">
-    <div class="gallery-strip-caption">Night Pickup</div>
-  </div>
-</div>
+<!-- ===================== GALLERY GRID ===================== -->
+<section class="gallery-section" id="gallery" aria-labelledby="gallery-h2">
+  <div class="gallery-section-inner">
+    <div class="gallery-header">
+      <div>
+        <div class="eyebrow">Our Work</div>
+        <h2 class="section-title" id="gallery-h2">Jobs we've handled.</h2>
+      </div>
+    </div>
+    <div class="gallery-grid" aria-label="Photo gallery of boat removals">
 
-<!-- Mobile carousel (same images, swipeable) -->
-<div class="gallery-carousel" id="gallery-carousel" aria-label="Photo gallery of boat removals">
-  <div class="gallery-carousel-inner">
-    <div class="gallery-strip-item">
-      <img src="boatontrailerreadyforremoval.jpg" alt="Boat on trailer staged and ready for removal" loading="lazy">
-      <div class="gallery-strip-caption">Ready for Removal</div>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="trailerbringingboatoutofwater.jpg" alt="Trailer hauling a boat out of the water" loading="lazy">
-      <div class="gallery-strip-caption">Haul-Out</div>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="excavatorboatdesmanteling.jpg" alt="Excavator dismantling a boat at disposal site" loading="lazy">
-      <div class="gallery-strip-caption">Disposal</div>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="traileroversizehaulingboat.jpg" alt="Oversize trailer hauling a large boat" loading="lazy">
-      <div class="gallery-strip-caption">Oversize Haul</div>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="nighttimeabandonedvesseltrailerpickupfromwater.jpg" alt="Nighttime trailer pickup of abandoned vessel from water" loading="lazy">
-      <div class="gallery-strip-caption">Night Pickup</div>
+      <!-- Row 1: wide + 2 regular -->
+      <div class="gallery-grid-item wide">
+        <img src="boatcraneliftingoutofwater.jpg" alt="Crane lifting a boat out of the water" loading="lazy">
+        <div class="gallery-grid-caption">Crane Lift</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="boatontrailerreadyforremoval.jpg" alt="Boat on trailer ready for removal" loading="lazy">
+        <div class="gallery-grid-caption">Ready for Removal</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="trailerbringingboatoutofwater.jpg" alt="Trailer hauling a boat out of the water" loading="lazy">
+        <div class="gallery-grid-caption">Haul-Out</div>
+      </div>
+
+      <!-- Row 2: 2 regular + wide -->
+      <div class="gallery-grid-item">
+        <img src="marinevessellaodedupontrailertransport.jpg" alt="Marine vessel loaded on trailer for transport" loading="lazy">
+        <div class="gallery-grid-caption">Trailer Transport</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="excavatorboatdesmanteling.jpg" alt="Excavator dismantling a boat at disposal site" loading="lazy">
+        <div class="gallery-grid-caption">Disposal</div>
+      </div>
+      <div class="gallery-grid-item wide">
+        <img src="traileroversizehaulingboat.jpg" alt="Oversize trailer hauling a large boat" loading="lazy">
+        <div class="gallery-grid-caption">Oversize Haul</div>
+      </div>
+
+      <!-- Row 3: 4 regular -->
+      <div class="gallery-grid-item">
+        <img src="oversizeloadtransportingboat.jpg" alt="Oversize load transporting a vessel" loading="lazy">
+        <div class="gallery-grid-caption">Oversize Transport</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="sailboatcrane.jpg" alt="Sailboat being lifted by crane for removal" loading="lazy">
+        <div class="gallery-grid-caption">Crane Removal</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="abandonedmarinavessel.jpg" alt="Abandoned vessel at a marina dock" loading="lazy">
+        <div class="gallery-grid-caption">Marina Pickup</div>
+      </div>
+      <div class="gallery-grid-item">
+        <img src="nighttimeabandonedvesseltrailerpickupfromwater.jpg" alt="Nighttime trailer pickup of abandoned vessel from water" loading="lazy">
+        <div class="gallery-grid-caption">Night Pickup</div>
+      </div>
+
     </div>
   </div>
-</div>
-<div class="gallery-carousel-dots" id="gallery-dots">
-  <span class="active" data-idx="0"></span>
-  <span data-idx="1"></span>
-  <span data-idx="2"></span>
-  <span data-idx="3"></span>
-  <span data-idx="4"></span>
-</div>
+</section>
 
 <!-- ===================== TESTIMONIALS ===================== -->
 <section class="testimonials-section" id="testimonials" aria-labelledby="testimonials-h2">
