@@ -1942,8 +1942,4 @@ async function submitLead() {
 [['f-name','f-name-err', v=>v.length>=2], ['f-phone','f-phone-err', v=>/^[\d\s\(\)\-\+\.]{7,}$/.test(v)], ['f-state','f-state-err', v=>v!=='']].forEach(([id,errId,check]) => {
   const el = document.getElementById(id);
   el.addEventListener('blur',  () => validateField(id, errId, check));
-  el.addEventListener('input', () => { el.classList.remove('error'); const e = document.getElementById(errId); if(e) e.classList.remove('show'); });
-});
-</script>
-</body>
-</html>
+  el.addEv
